@@ -297,14 +297,16 @@ body {
 	left: 20px;
 }
 
-#slider-navigation ul li a em.ico1 { 
+#slider-navigation ul li a em.ico1,
+#slider-navigation ul li a em.ico2,
+#slider-navigation ul li a em.ico3 { 
 	width: 58px; 
 	height: 59px; 
 	background: url('images/ico1.png'); 
 	left: 28px;
 }
 
-#slider-navigation ul li a em.ico2 { 
+/*#slider-navigation ul li a em.ico2 { 
 	width: 41px; 
 	height: 61px; 
 	background: url('images/ico2.png'); 
@@ -315,7 +317,7 @@ body {
 	width: 71px; 
 	height: 64px; 
 	background: url('images/ico3.png');
-}
+}*/
 
 #slider-navigation ul li a.active,
 #slider-navigation ul li a:hover { 
