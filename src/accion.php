@@ -1,34 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-	<script language="JavaScript">
-		function popup(URL, L, T) {
-			day = new Date();
-			id = day.getTime();
-			eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=1,scrollbars=1,location=1,statusbar=1,menubar=1,resizable=1,width=800,height=600,left =L ,top = T');");
-		}
-		function paginas() {
-		   popup("esp.html",524,210);
-		   popup("eur.html",624,230);
-		   popup("90p.html",724,250);
-		}
-	</script>
-
-	<title>Busqueda de patentes</title>
-
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="es" />
+	<meta name="language" content="es" />
+	<meta name="keywords" content="Buscador, Patentes, Europa, Nacional, Internacional" />
+	<meta name="description" content="Buscador de Patentes Nacional, Europea e Internacional" />
+	<meta name="author" content="Miguel Hernández - Maurizio Rendón" />
+	<meta name="robots" content="all" />
+	
+	<title>Buscador de Patentes (Nacional-Europea-Internacional)</title>
+	
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+	<!--[if lte IE 6]><link rel="stylesheet" href="../css/ie6.css" type="text/css" media="all" /><![endif]-->
+	<!--[if IE]><style type="text/css" media="screen"> #navigation ul li a em { top:32px; } </style><![endif]-->
+	
 </head>
 
-<body onload="paginas()">
-</body>
-</html>
+<body>
+
+	<div id="header">
+
+		<div class="shell">
+			
+			<h1 id="logo">
+				<a href="index.html">Buscador de Patentes.</a>
+			</h1>
+			<!--/ Logo -->
+			
+			<div id="navigation">
+				<ul>
+					<li class="selected"><a href="index.html">Home</a></li>
+					<li><a href="acerca-de.html">Acerca de</a></li>
+					<li><a href="quienes-somos.html">Quienes Somos</a></li>
+					<li class="last"><a href="contacto.html">Contacto</a></li>
+				</ul>
+			</div>
+			<!--/ Navigation -->
+			
+		</div>
+		<!-- shell -->
+		
+	</div>
+	<!--/ Header -->
+
+	<div id="content">	
+
+		<div class="shell">
+			
+			<div class="content">
 
 <?php 
 
-$a = $_POST['nomb']; 
+$a = $_POST['patente']; 
 
 //funcion para extraer codigo html entre 2 límites
 function cortar($beg, $end, $str) {
@@ -48,9 +75,6 @@ $f1 = $url1.$a;
 $f2 = $url2.$a;
 $f3 = $url3.$a.$url3end;
 
-echo $f1."<br />";
-echo $f2."<br />";
-echo $f3."<br />";
 
 //-----------------------------------------
 //----Parte de patentes españolas----
@@ -74,15 +98,12 @@ $xpath = new DOMXPath( $html );
 //extraemos todos los enlaces para poder corregirlos
 $links = $xpath->query( '//a[starts-with(@href,"/es/signos_distintivos/detalle.html?")] | //td ');
 
-$tabladef='<table width="700" border="1"> <tr> <td>';
-$tablacont='</td> </tr> <tr> <td>';
-$tablaend='</td> </tr> </table>';
-$estilo='<style type="text/css"> body,td,th { font-family: "Trebuchet MS", Helvetica, sans-serif; } </style>';
+$tabladef  = '<table> <tr> <td>';
+$tablacont = '</td> </tr> <tr> <td>';
+$tablaend  = '</td> </tr> </table>';
 
-file_put_contents("esp.html", $estilo);
-file_put_contents("esp.html", '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />', FILE_APPEND);
-file_put_contents("esp.html", '<h1><strong>Búsqueda en base de datos de España</strong></h1>', FILE_APPEND);
-file_put_contents("esp.html", $tabladef, FILE_APPEND);
+echo "				<div class='search-spain'>";
+echo "				<h2>Resultados en Base de Datos de España:</h2>";
 
 $salida = "";
 $contenido = "";
@@ -98,11 +119,7 @@ foreach ( $links as $link )
 	$clink = str_replace(" ", "%20",$clink);
 	$mat = file($clink);
 
-	//echo $clink."<br />";   
-
 	//escribimos el enlace corregido mas la descripcion concreta de la patente (se encuentra en la linea 404 del html generado)
-	$clink = '<p>'.'<a href='.$clink.'title="Enlace" target="new">Enlace original</a>'.'</p>';
-	$salida = $salida.$clink;
 	$contenido = utf8_encode($mat[404]);
 
 	//reparamos las url relativas
@@ -117,13 +134,16 @@ foreach ( $links as $link )
 	
 }
 
-//escribimos los resultados en el fichero
-file_put_contents("esp.html", $salida, FILE_APPEND);
-file_put_contents("esp.html", $tablacont, FILE_APPEND);
-file_put_contents("esp.html", $tablaend, FILE_APPEND);
+//escribimos los resultados
 
-$ref = '<p>'.'<a href='.$f2.' title="Enlace" target="new">Mas informacion en la pagina original</a>'.'</p>';
-file_put_contents("esp.html", $ref, FILE_APPEND);
+echo $salida;
+echo '					<p class="more">
+							<a href='.$f2.' title="Enlace" target="new">>> Más información en la página original</a>
+						</p>';
+
+echo "				</div>
+					<!--/ search-spain -->";
+
 libxml_clear_errors();
 libxml_use_internal_errors( $oldSetting );
 
@@ -148,20 +168,27 @@ $urlpe = 'http://worldwide.espacenet.com/';
 $url_repair = '/publicationDetails/biblio';
 $urleur = str_replace($url_repair, $urlpe.'publicationDetails/biblio', $urleur);
 
+$reemplazar ='     <tr>
+        <th colspan="7">';
+		
+$urleur = str_replace($reemplazar, "<tr class='title'><th colspan='7'>", $urleur);
 
-//añadimos el estilo de la fuente
-$estilo='<style type="text/css"> body,td,th { font-family: "Trebuchet MS", Helvetica, sans-serif; } </style>';
 
 //Escribimos todos los resultados a fichero y con su estilo, cabecera con la codificacion
-file_put_contents("eur.html",$estilo);
-file_put_contents("eur.html",'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />',FILE_APPEND);
-file_put_contents("eur.html",'<h1><strong>Búsqueda en base de datos de Europa</strong></h1>',FILE_APPEND);
-file_put_contents("eur.html",$tabladef,FILE_APPEND);
-file_put_contents("eur.html",$urleur,FILE_APPEND);
-file_put_contents("eur.html",$tablacont,FILE_APPEND);
-file_put_contents("eur.html",$tablaend,FILE_APPEND);
-$ref = '<p>'.'<a href='.$f3.' title="Enlace" target="new">Mas informacion en la pagina original</a>'.'</p>';
-file_put_contents("eur.html",$ref,FILE_APPEND);
+
+
+echo "				<div class='search-europe'>";
+echo "				<h2>Resultados en Base de Datos de Europa:</h2>";
+echo $tabladef;
+echo $urleur;
+echo $tablacont;
+echo $tablaend;
+echo '					<p class="more">
+							<a href='.$f3.' title="Enlace" target="new">>> Más información en la página original</a>
+						</p>';
+
+echo "				</div>
+					<!--/ search-europe -->";
 
 
 
@@ -172,7 +199,7 @@ file_put_contents("eur.html",$ref,FILE_APPEND);
 $url90 = cortar('<table class="application">', '</table>', $url90);
 
 
-/*
+
 //quitamos las checkbox innecesarias para nuestro html
 $limpiar_checkbox='%<input type="checkbox"[^>]*>%';
 $url90 = preg_replace($limpiar_checkbox,'',$url90);
@@ -198,11 +225,43 @@ $ref = '<p>'.'<a href='.$f1.' title="Enlace" target="new">Mas informacion en la 
 file_put_contents("90p.html",$ref,FILE_APPEND);
 */
 
-echo '<p>'.'Enlaces a las búsquedas:'.'</p>';
-echo '<p>'.'<a href="./90p.html" title="Enlace" target="new">Búsqueda en más de 90 países</a>'.'</p>';
-echo '<p>'.'<a href="./esp.html" title="Enlace" target="new">Búsqueda de patentes en España</a>'.'</p>';
-echo '<p>'.'<a href="./eur.html" title="Enlace" target="new">Búsqueda de patentes en Europa</a>'.'</p>';
 
 ?>
 
+			</div>
+			<!--/ content -->
+			
+		</div>
+
+	</div>
+	<!--/ content -->
+
+	<div id="footer">
+	
+		<div class="shell">
+			
+			<a href="#" class="notext footer-logo">Buscador de Patentes</a>
+			
+			<div class="right">
+				<p class="footer-menu">
+					<a class="selected" href="index.html">Home</a>
+					<span>|</span>
+					<a href="acerca-de.html">Acerca de</a>
+					<span>|</span>
+					<a href="quienes-somos.html">Quienes Somos</a>
+					<span>|</span>
+					<a href="contacto.html">Contacto</a>
+				</p>
+				<p class="copyright">Copyright &copy; 2013. (Miguel-Hernández y Maurizio-Rendón).</p>
+			</div>
+			<!--/ Footer Nav -->
+			
+		</div>
+		<!--/ Shell -->
+		
+	</div>
+	<!--/ Footer -->
+	
+</body>
+</html>
 

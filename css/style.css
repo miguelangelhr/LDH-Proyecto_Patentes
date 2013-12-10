@@ -80,6 +80,14 @@ h3 {
 	line-height: 24px;
 }
 
+h4 { 
+	font-size: 18px; 
+	line-height: 22px;
+	letter-spacing: 2px;
+	margin: 10px 0 15px;
+}
+
+
 h2, 
 h3,
 #navigation,
@@ -172,11 +180,12 @@ body {
 	left: 50%;
 }
 
-#navigation ul li a.hover { 
+#navigation ul li a:hover,
+#navigation ul .selected  a { 
 	color:#F6CB44;
 }
 
-#navigation ul li a.hover em { 
+#navigation ul li a:hover em { 
 	background-position: 0 0;
 }
 
@@ -259,18 +268,18 @@ body {
 	height: 67px;
 }
 
-#slider-navigation ul li{ 
+#slider-navigation ul li { 
 	float: left; 
 	display: inline; 
 	position: relative; 
 	margin: -35px 95px -22px 0;
 }
 
-#slider-navigation ul li.last{ 
+#slider-navigation ul li.last { 
 	margin-right: 0;
 }
 
-#slider-navigation ul li a{ 
+#slider-navigation ul li a { 
 	float: left; 
 	width: 171px; 
 	height: 79px; 
@@ -326,22 +335,22 @@ body {
 }
 
 #slider-navigation ul li a.active strong,
-#slider-navigation ul li a:hover strong{ 
+#slider-navigation ul li a:hover strong { 
 	color: #000;
 }
 
 
-#main { 
+#content { 
 	width: 100%; 
 	background: #D3D4CE; 
 	padding: 50px 0;
 }
 
-#main h3{ 
+#content h3{ 
 	padding-bottom: 10px;
 }
 
-#main p{
+#content p{
 	padding-bottom: 15px;
 }
 
@@ -362,14 +371,33 @@ a.more {
 	margin-right: 0;
 }
 
+
+.internal-page h2 {
+	text-transform: capitalize;
+	margin-bottom: 15px;
+}
+
+.internal-page #content p {
+	text-align: justify;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.internal-page .sangria {
+	margin: 0 0 25px 40px;
+}
+
+
 #footer { 
 	height: 92px; 
-	background: url('images/footer.gif'); 
+/*	background-image: url('images/footer.gif');
+	background-repeat: repeat-y;
+	background-position: top left;*/
 	color:#6D6D6D;
 }
 
 #footer .shell{ 
-	padding-top:28px;
+	padding-top: 28px;
 }
 
 #footer .right { 
@@ -378,18 +406,24 @@ a.more {
 	text-align: right;
 }
 
-#footer .right span{ 
+#footer .right span { 
 	padding:0 1px;
 }
 
-#footer .right a{ 
+#footer .right a { 
 	text-decoration: none; 
 	color: #939393;
 }
 
-#footer .right a:hover{ 
+#footer .right a:hover,
+#footer .right .selected { 
 	color:#F6CB44;
 }
+
+#footer .footer-menu {
+	margin-bottom: 5px;
+}
+
 
 .footer-logo { 
 	float: left; 
@@ -431,4 +465,139 @@ a.more {
 	color: #333;
 	font-weight: bold;
 	margin-right: 65px;
+}
+
+
+.contact #content {
+	overflow: hidden;
+}
+
+.contact #content img {
+	float: left;
+	margin: 0 40px 0 20px;
+}
+
+.content .contact-info h3 {
+	margin: 30px 0 15px;
+	text-align: center;
+}
+
+.content .contact-info span {
+	font-weight: bold;
+}
+
+.quienes-somos #content ul {
+	margin: 5px 0 30px;
+}
+
+.quienes-somos #content li {
+	font-size: 16px;
+	line-height: 20px;
+	list-style-type: circle;
+	list-style-position: inside;
+	margin: 0 0 10px 30px;
+}
+
+.quienes-somos #content li span {
+	font-weight: bold;
+	font-style: italic;
+	width: 300px;
+	display: inline-block;
+}
+
+
+
+.search-spain .ficha {
+	padding: 15px;
+	border: 1px solid #999;
+	margin: 20px 0;
+	background-color: #DDD;
+}
+
+.search-spain .ampliar {
+	display: none;
+}
+
+.search-spain .ficha a {
+	float: right;
+	margin: 10px 20px;
+}
+
+.search-spain .ficha img {
+	height: 220px;
+	width: 250px;
+	padding: 3px;
+	border: 1px solid #999;
+}
+
+.search-spain .nombre {
+	font-size: 16px;
+	line-height: 20px;
+	margin: 10px 0 0;
+	color: #333;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.search-spain li {
+	list-style: none;
+	list-style-position: inside;
+}
+
+.search-spain li a {
+	float: none !important;
+	margin: 0 !important;
+}
+
+.more {
+	margin: 0 20px 10px;
+}
+
+.search-europe h2 {
+	margin: 20px 0;
+}
+
+.search-europe tr {
+	margin: 20px 0;
+	border-spacing: 0;
+}
+
+.search-europe th {
+	padding: 15px;
+	font-size: 16px;
+	line-height: 20px;
+	margin: 20px 0;
+	color: #333;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: 1px solid #999;
+	background-color: #DDD;
+}
+
+.search-europe td {
+	padding: 5px 10px 30px;
+	vertical-align: top;
+}
+
+.search-europe .more {
+	margin-top: -60px;
+}
+
+.resLstIco {
+	display: none;
+}
+
+.inventorColumn,
+.publicationInfoColumn,
+.applicantColumn {
+	width: 200px;
+}
+ 
+.ecColumn {
+	width: 60px;
+}
+ 
+.ipcColumn, 
+.nowrap {
+	width: 120px;
 }
