@@ -57,36 +57,45 @@
 
 $a = $_POST['patente']; 
 
-//funcion para extraer codigo html entre 2 límites
+/**
+ * funcion para extraer codigo html entre 2 limites
+ */
 function cortar($beg, $end, $str) {
    $a = explode($beg, $str, 2);
    $b = explode($end, $a[1]);
    return $beg . $b[0] . $end;
 }
 
-//direcciones url para realizar las busquedas
+/**
+ * direcciones url para realizar las busquedas
+ */
 $url1 = "http://worldwide.espacenet.com/searchResults?compact=false&AB=";
 $url2 = "http://www.oepm.es/es/signos_distintivos/resultados.html?denominacion=Contenga&texto=";
 $url3 = "http://ep.espacenet.com/searchResults?compact=false&AB=";
 $url3end = "&ST=quick&locale=en_EP&submitted=true&DB=ep.espacenet.com";
 
-//Definimos las urls finales con la cadena a buscar
+/**
+ * Definimos las urls finales con la cadena a buscar
+ */
 $f1 = $url1.$a;
 $f2 = $url2.$a;
 $f3 = $url3.$a.$url3end;
 
 
 //-----------------------------------------
-//----Parte de patentes españolas----
+//----Parte de patentes espa�olas----
 //-----------------------------------------
 
-//creamos un fichero html temporal para extraer las descripciones de las patentes
-
+/**
+ * creamos un fichero html temporal para extraer las descripciones de las patentes
+ */
 $matriz = file($f2);
 file_put_contents("tmp.html","");
 file_put_contents("tmp.html",$matriz[400],FILE_APPEND);
 
-//url de la pagina para arreglar los enlaces relativos
+/**
+ * url de la pagina para arreglar los enlaces relativos
+ */
 $oldSetting = libxml_use_internal_errors( true );
 libxml_clear_errors();
 
@@ -95,7 +104,9 @@ $html -> loadHtmlFile("tmp.html");
 $xpath = new DOMXPath( $html );
 
 
-//extraemos todos los enlaces para poder corregirlos
+/**
+ * extraemos todos los enlaces para poder corregirlos
+ */
 $links = $xpath->query( '//a[starts-with(@href,"/es/signos_distintivos/detalle.html?")] | //td ');
 
 $tabladef  = '<table> <tr> <td>';
@@ -110,19 +121,28 @@ $contenido = "";
 
 $urloe = "http://www.oepm.es";
 
-//recorremos todos los enlaces extraidos
+/**
+ * recorremos todos los enlaces extraidos
+ */
 foreach ( $links as $link )
 {
 
-	//corregimos los enlaces
+	/**
+	 * corregimos los enlaces
+	 */
 	$clink = $urloe.$link->getAttribute( 'href' );
 	$clink = str_replace(" ", "%20",$clink);
 	$mat = file($clink);
 
-	//escribimos el enlace corregido mas la descripcion concreta de la patente (se encuentra en la linea 404 del html generado)
+	/**
+	 * escribimos el enlace corregido mas la descripcion concreta de la patente
+	 * (se encuentra en la linea 404 del html generado)
+	 */
 	$contenido = utf8_encode($mat[404]);
 
-	//reparamos las url relativas
+	/**
+	 * reparamos las url relativas
+	 */
 	$url_repair = '/es/signos_distintivos/';
 	$contenido = str_replace($url_repair, $urloe.'/es/signos_distintivos/' ,$contenido);
 	
@@ -134,8 +154,9 @@ foreach ( $links as $link )
 	
 }
 
-//escribimos los resultados
-
+/**
+ * escribimos los resultados
+ */
 echo $salida;
 echo '					<p class="more">
 							<a href='.$f2.' title="Enlace" target="new">>> Más información en la página original</a>
@@ -155,15 +176,21 @@ libxml_use_internal_errors( $oldSetting );
 
 $urleur = file_get_contents($f3);
 
-//extraemos la tabla donde se encuentra el contenido que nos interesa del html obtenido
+/**
+ * extraemos la tabla donde se encuentra el contenido que nos interesa del html obtenido
+ */
 $urleur= cortar('<table class="application">', '</table>', $urleur);
 
-//eliminamos los checkbox innecesarios
+/**
+ * eliminamos los checkbox innecesarios
+ */
 $limpiar_checkbox='%<input type="checkbox"[^>]*>%';
 $urleur = preg_replace($limpiar_checkbox,'',$urleur);
 
 
-//arreglamos las url relativas
+/**
+ * arreglamos las url relativas
+ */
 $urlpe = 'http://worldwide.espacenet.com/';
 $url_repair = '/publicationDetails/biblio';
 $urleur = str_replace($url_repair, $urlpe.'publicationDetails/biblio', $urleur);
@@ -174,8 +201,9 @@ $reemplazar ='     <tr>
 $urleur = str_replace($reemplazar, "<tr class='title'><th colspan='7'>", $urleur);
 
 
-//Escribimos todos los resultados a fichero y con su estilo, cabecera con la codificacion
-
+/**
+ * Escribimos todos los resultados a fichero y con su estilo, cabecera con la codificacion
+ */
 
 echo "				<div class='search-europe'>";
 echo "				<h2>Resultados en Base de Datos de Europa:</h2>";

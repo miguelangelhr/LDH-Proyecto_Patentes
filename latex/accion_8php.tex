@@ -1,0 +1,161 @@
+\hypertarget{accion_8php}{\section{src/accion.php File Reference}
+\label{accion_8php}\index{src/accion.\-php@{src/accion.\-php}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{accion_8php_ad12e25311a559d701c21fcfff6fdc5d2}{cortar} (\$beg, \$end, \$str)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{accion_8php_acebf83966ef6d7e5645a6b62ba368f9f}{\$a} = \$\-\_\-\-P\-O\-S\-T\mbox{[}'patente'\mbox{]}
+\item 
+\hyperlink{accion_8php_a6b780572d403730c4f958bfff1a7a7c4}{\$url1} = \char`\"{}http\-://worldwide.\-espacenet.\-com/search\-Results?compact=false\&A\-B=\char`\"{}
+\item 
+\hyperlink{accion_8php_a22d7d56cce8f1edfe80520f5ecd53299}{\$url2} = \char`\"{}http\-://www.\-oepm.\-es/es/signos\-\_\-distintivos/resultados.\-html?denominacion=Contenga\&texto=\char`\"{}
+\item 
+\hyperlink{accion_8php_adc558598df5e4c075fae9e30c8825716}{\$url3} = \char`\"{}http\-://ep.\-espacenet.\-com/search\-Results?compact=false\&A\-B=\char`\"{}
+\item 
+\hyperlink{accion_8php_a55166030a9a63cf5f84e1fbf035e4857}{\$url3end} = \char`\"{}\&S\-T=quick\&locale=en\-\_\-\-E\-P\&submitted=true\&D\-B=ep.\-espacenet.\-com\char`\"{}
+\item 
+\hyperlink{accion_8php_a8f4c2e985a8fcfe3137f3758fd0bddeb}{\$f1} = \$\hyperlink{accion_8php_acebf83966ef6d7e5645a6b62ba368f9f}{url1.\$a}
+\item 
+\hyperlink{accion_8php_a700a13b72fad231fc3fa2c45597a5615}{\$f2} = \$\hyperlink{accion_8php_acebf83966ef6d7e5645a6b62ba368f9f}{url2.\$a}
+\item 
+\hyperlink{accion_8php_acbfa0f89ab3a6c40073dcc48aff0e97d}{\$f3} = \$\hyperlink{accion_8php_a55166030a9a63cf5f84e1fbf035e4857}{url3.\$a.\$url3end}
+\item 
+\hyperlink{accion_8php_ab3085040f9b0692adea148136827b8ed}{\$matriz} = file(\$f2)
+\item 
+\hyperlink{accion_8php_afac1cf670bb0027604bf30d392e071a8}{\$old\-Setting} = libxml\-\_\-use\-\_\-internal\-\_\-errors( true )
+\item 
+\hyperlink{accion_8php_a6f96e7fc92441776c9d1cd3386663b40}{\$html} = new D\-O\-M\-Document()
+\item 
+\hyperlink{accion_8php_aa270f2ef637ad3d6465f2b764c046def}{\$xpath} = new D\-O\-M\-X\-Path( \$html )
+\item 
+\hyperlink{accion_8php_a4ca8be3ff3cf95aa3af546449c1f1bec}{\$links} = \$xpath-\/$>$query( '//a\mbox{[}starts-\/with(@href,\char`\"{}/es/signos\-\_\-distintivos/detalle.\-html?\char`\"{})\mbox{]} $|$ //td ')
+\item 
+\hyperlink{accion_8php_aae64521d5d68e0fcfc9ffcef5576546f}{\$tabladef} = '$<$table$>$ $<$tr$>$ $<$td$>$'
+\item 
+\hyperlink{accion_8php_ad04ea8dc18e6abf09f240b6911e3a7ca}{\$tablacont} = '$<$/td$>$ $<$/tr$>$ $<$tr$>$ $<$td$>$'
+\item 
+\hyperlink{accion_8php_ac9b5ce205693e7912d458dc68f541603}{\$tablaend} = '$<$/td$>$ $<$/tr$>$ $<$/table$>$'
+\item 
+\hyperlink{accion_8php_a91c96428692c3699abfeb14c571ae76a}{\$salida} = \char`\"{}\char`\"{}
+\item 
+\hyperlink{accion_8php_acc746630ee64ff7254fea9f0473dc1c6}{\$contenido} = \char`\"{}\char`\"{}
+\item 
+\hyperlink{accion_8php_a081efab717c24c5b35e1c7b5d7f9a0d7}{\$urloe} = \char`\"{}http\-://www.\-oepm.\-es\char`\"{}
+\item 
+\hyperlink{accion_8php_ae49e2d63f3c0e66b857f6c514a361000}{foreach} (\$links as \$link)
+\item 
+\hyperlink{accion_8php_afa50febb675e5f19e9013510de218de5}{\$urleur} = file\-\_\-get\-\_\-contents(\$f3)
+\item 
+\hyperlink{accion_8php_ac23882fd8ca5a06313790e9684665860}{\$limpiar\-\_\-checkbox} ='\%$<$input type=\char`\"{}checkbox\char`\"{}\mbox{[}$^\wedge$$>$\mbox{]}$\ast$$>$\%'
+\item 
+\hyperlink{accion_8php_a8d0580b4daa45d2b3b97109ff02e6b65}{\$urlpe} = 'http\-://worldwide.\-espacenet.\-com/'
+\item 
+\hyperlink{accion_8php_af22f03a42ae9a75c7c756dbf6fa0c53f}{\$url\-\_\-repair} = '/publication\-Details/biblio'
+\item 
+\hyperlink{accion_8php_a9b815abe13bb31dff998216079806408}{\$reemplazar}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{accion_8php_ad12e25311a559d701c21fcfff6fdc5d2}{\index{accion.\-php@{accion.\-php}!cortar@{cortar}}
+\index{cortar@{cortar}!accion.php@{accion.\-php}}
+\subsubsection[{cortar}]{\setlength{\rightskip}{0pt plus 5cm}cortar (
+\begin{DoxyParamCaption}
+\item[{}]{\$beg, }
+\item[{}]{\$end, }
+\item[{}]{\$str}
+\end{DoxyParamCaption}
+)}}\label{accion_8php_ad12e25311a559d701c21fcfff6fdc5d2}
+funcion para extraer codigo html entre 2 limites corregimos los enlaces
+
+escribimos el enlace corregido mas la descripcion concreta de la patente (se encuentra en la linea 404 del html generado)
+
+reparamos las url relativas
+
+\subsection{Variable Documentation}
+\hypertarget{accion_8php_acebf83966ef6d7e5645a6b62ba368f9f}{\index{accion.\-php@{accion.\-php}!\$a@{\$a}}
+\index{\$a@{\$a}!accion.php@{accion.\-php}}
+\subsubsection[{\$a}]{\setlength{\rightskip}{0pt plus 5cm}\$a = \$\-\_\-\-P\-O\-S\-T\mbox{[}'patente'\mbox{]}}}\label{accion_8php_acebf83966ef6d7e5645a6b62ba368f9f}
+\hypertarget{accion_8php_acc746630ee64ff7254fea9f0473dc1c6}{\index{accion.\-php@{accion.\-php}!\$contenido@{\$contenido}}
+\index{\$contenido@{\$contenido}!accion.php@{accion.\-php}}
+\subsubsection[{\$contenido}]{\setlength{\rightskip}{0pt plus 5cm}\$contenido = \char`\"{}\char`\"{}}}\label{accion_8php_acc746630ee64ff7254fea9f0473dc1c6}
+\hypertarget{accion_8php_a8f4c2e985a8fcfe3137f3758fd0bddeb}{\index{accion.\-php@{accion.\-php}!\$f1@{\$f1}}
+\index{\$f1@{\$f1}!accion.php@{accion.\-php}}
+\subsubsection[{\$f1}]{\setlength{\rightskip}{0pt plus 5cm}\$f1 = \${\bf url1.\$a}}}\label{accion_8php_a8f4c2e985a8fcfe3137f3758fd0bddeb}
+Definimos las urls finales con la cadena a buscar \hypertarget{accion_8php_a700a13b72fad231fc3fa2c45597a5615}{\index{accion.\-php@{accion.\-php}!\$f2@{\$f2}}
+\index{\$f2@{\$f2}!accion.php@{accion.\-php}}
+\subsubsection[{\$f2}]{\setlength{\rightskip}{0pt plus 5cm}\$f2 = \${\bf url2.\$a}}}\label{accion_8php_a700a13b72fad231fc3fa2c45597a5615}
+\hypertarget{accion_8php_acbfa0f89ab3a6c40073dcc48aff0e97d}{\index{accion.\-php@{accion.\-php}!\$f3@{\$f3}}
+\index{\$f3@{\$f3}!accion.php@{accion.\-php}}
+\subsubsection[{\$f3}]{\setlength{\rightskip}{0pt plus 5cm}\$f3 = \${\bf url3.\$a.\$url3end}}}\label{accion_8php_acbfa0f89ab3a6c40073dcc48aff0e97d}
+\hypertarget{accion_8php_a6f96e7fc92441776c9d1cd3386663b40}{\index{accion.\-php@{accion.\-php}!\$html@{\$html}}
+\index{\$html@{\$html}!accion.php@{accion.\-php}}
+\subsubsection[{\$html}]{\setlength{\rightskip}{0pt plus 5cm}\$html = new D\-O\-M\-Document()}}\label{accion_8php_a6f96e7fc92441776c9d1cd3386663b40}
+\hypertarget{accion_8php_ac23882fd8ca5a06313790e9684665860}{\index{accion.\-php@{accion.\-php}!\$limpiar\-\_\-checkbox@{\$limpiar\-\_\-checkbox}}
+\index{\$limpiar\-\_\-checkbox@{\$limpiar\-\_\-checkbox}!accion.php@{accion.\-php}}
+\subsubsection[{\$limpiar\-\_\-checkbox}]{\setlength{\rightskip}{0pt plus 5cm}\$limpiar\-\_\-checkbox ='\%$<$input type=\char`\"{}checkbox\char`\"{}\mbox{[}$^\wedge$$>$\mbox{]}$\ast$$>$\%'}}\label{accion_8php_ac23882fd8ca5a06313790e9684665860}
+eliminamos los checkbox innecesarios \hypertarget{accion_8php_a4ca8be3ff3cf95aa3af546449c1f1bec}{\index{accion.\-php@{accion.\-php}!\$links@{\$links}}
+\index{\$links@{\$links}!accion.php@{accion.\-php}}
+\subsubsection[{\$links}]{\setlength{\rightskip}{0pt plus 5cm}\$links = \$xpath-\/$>$query( '//a\mbox{[}starts-\/with(@href,\char`\"{}/es/signos\-\_\-distintivos/detalle.\-html?\char`\"{})\mbox{]} $|$ //td ')}}\label{accion_8php_a4ca8be3ff3cf95aa3af546449c1f1bec}
+extraemos todos los enlaces para poder corregirlos \hypertarget{accion_8php_ab3085040f9b0692adea148136827b8ed}{\index{accion.\-php@{accion.\-php}!\$matriz@{\$matriz}}
+\index{\$matriz@{\$matriz}!accion.php@{accion.\-php}}
+\subsubsection[{\$matriz}]{\setlength{\rightskip}{0pt plus 5cm}\$matriz = file(\$f2)}}\label{accion_8php_ab3085040f9b0692adea148136827b8ed}
+creamos un fichero html temporal para extraer las descripciones de las patentes \hypertarget{accion_8php_afac1cf670bb0027604bf30d392e071a8}{\index{accion.\-php@{accion.\-php}!\$old\-Setting@{\$old\-Setting}}
+\index{\$old\-Setting@{\$old\-Setting}!accion.php@{accion.\-php}}
+\subsubsection[{\$old\-Setting}]{\setlength{\rightskip}{0pt plus 5cm}\$old\-Setting = libxml\-\_\-use\-\_\-internal\-\_\-errors( true )}}\label{accion_8php_afac1cf670bb0027604bf30d392e071a8}
+url de la pagina para arreglar los enlaces relativos \hypertarget{accion_8php_a9b815abe13bb31dff998216079806408}{\index{accion.\-php@{accion.\-php}!\$reemplazar@{\$reemplazar}}
+\index{\$reemplazar@{\$reemplazar}!accion.php@{accion.\-php}}
+\subsubsection[{\$reemplazar}]{\setlength{\rightskip}{0pt plus 5cm}\$reemplazar}}\label{accion_8php_a9b815abe13bb31dff998216079806408}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+=\textcolor{stringliteral}{'     <tr>}
+\textcolor{stringliteral}{        <th colspan="7">'}
+\end{DoxyCode}
+\hypertarget{accion_8php_a91c96428692c3699abfeb14c571ae76a}{\index{accion.\-php@{accion.\-php}!\$salida@{\$salida}}
+\index{\$salida@{\$salida}!accion.php@{accion.\-php}}
+\subsubsection[{\$salida}]{\setlength{\rightskip}{0pt plus 5cm}\$salida = \char`\"{}\char`\"{}}}\label{accion_8php_a91c96428692c3699abfeb14c571ae76a}
+\hypertarget{accion_8php_ad04ea8dc18e6abf09f240b6911e3a7ca}{\index{accion.\-php@{accion.\-php}!\$tablacont@{\$tablacont}}
+\index{\$tablacont@{\$tablacont}!accion.php@{accion.\-php}}
+\subsubsection[{\$tablacont}]{\setlength{\rightskip}{0pt plus 5cm}\$tablacont = '$<$/td$>$ $<$/tr$>$ $<$tr$>$ $<$td$>$'}}\label{accion_8php_ad04ea8dc18e6abf09f240b6911e3a7ca}
+\hypertarget{accion_8php_aae64521d5d68e0fcfc9ffcef5576546f}{\index{accion.\-php@{accion.\-php}!\$tabladef@{\$tabladef}}
+\index{\$tabladef@{\$tabladef}!accion.php@{accion.\-php}}
+\subsubsection[{\$tabladef}]{\setlength{\rightskip}{0pt plus 5cm}\$tabladef = '$<$table$>$ $<$tr$>$ $<$td$>$'}}\label{accion_8php_aae64521d5d68e0fcfc9ffcef5576546f}
+\hypertarget{accion_8php_ac9b5ce205693e7912d458dc68f541603}{\index{accion.\-php@{accion.\-php}!\$tablaend@{\$tablaend}}
+\index{\$tablaend@{\$tablaend}!accion.php@{accion.\-php}}
+\subsubsection[{\$tablaend}]{\setlength{\rightskip}{0pt plus 5cm}\$tablaend = '$<$/td$>$ $<$/tr$>$ $<$/table$>$'}}\label{accion_8php_ac9b5ce205693e7912d458dc68f541603}
+\hypertarget{accion_8php_a6b780572d403730c4f958bfff1a7a7c4}{\index{accion.\-php@{accion.\-php}!\$url1@{\$url1}}
+\index{\$url1@{\$url1}!accion.php@{accion.\-php}}
+\subsubsection[{\$url1}]{\setlength{\rightskip}{0pt plus 5cm}\$url1 = \char`\"{}http\-://worldwide.\-espacenet.\-com/search\-Results?compact=false\&A\-B=\char`\"{}}}\label{accion_8php_a6b780572d403730c4f958bfff1a7a7c4}
+direcciones url para realizar las busquedas \hypertarget{accion_8php_a22d7d56cce8f1edfe80520f5ecd53299}{\index{accion.\-php@{accion.\-php}!\$url2@{\$url2}}
+\index{\$url2@{\$url2}!accion.php@{accion.\-php}}
+\subsubsection[{\$url2}]{\setlength{\rightskip}{0pt plus 5cm}\$url2 = \char`\"{}http\-://www.\-oepm.\-es/es/signos\-\_\-distintivos/resultados.\-html?denominacion=Contenga\&texto=\char`\"{}}}\label{accion_8php_a22d7d56cce8f1edfe80520f5ecd53299}
+\hypertarget{accion_8php_adc558598df5e4c075fae9e30c8825716}{\index{accion.\-php@{accion.\-php}!\$url3@{\$url3}}
+\index{\$url3@{\$url3}!accion.php@{accion.\-php}}
+\subsubsection[{\$url3}]{\setlength{\rightskip}{0pt plus 5cm}\$url3 = \char`\"{}http\-://ep.\-espacenet.\-com/search\-Results?compact=false\&A\-B=\char`\"{}}}\label{accion_8php_adc558598df5e4c075fae9e30c8825716}
+\hypertarget{accion_8php_a55166030a9a63cf5f84e1fbf035e4857}{\index{accion.\-php@{accion.\-php}!\$url3end@{\$url3end}}
+\index{\$url3end@{\$url3end}!accion.php@{accion.\-php}}
+\subsubsection[{\$url3end}]{\setlength{\rightskip}{0pt plus 5cm}\$url3end = \char`\"{}\&S\-T=quick\&locale=en\-\_\-\-E\-P\&submitted=true\&D\-B=ep.\-espacenet.\-com\char`\"{}}}\label{accion_8php_a55166030a9a63cf5f84e1fbf035e4857}
+\hypertarget{accion_8php_af22f03a42ae9a75c7c756dbf6fa0c53f}{\index{accion.\-php@{accion.\-php}!\$url\-\_\-repair@{\$url\-\_\-repair}}
+\index{\$url\-\_\-repair@{\$url\-\_\-repair}!accion.php@{accion.\-php}}
+\subsubsection[{\$url\-\_\-repair}]{\setlength{\rightskip}{0pt plus 5cm}\$url\-\_\-repair = '/publication\-Details/biblio'}}\label{accion_8php_af22f03a42ae9a75c7c756dbf6fa0c53f}
+\hypertarget{accion_8php_afa50febb675e5f19e9013510de218de5}{\index{accion.\-php@{accion.\-php}!\$urleur@{\$urleur}}
+\index{\$urleur@{\$urleur}!accion.php@{accion.\-php}}
+\subsubsection[{\$urleur}]{\setlength{\rightskip}{0pt plus 5cm}\$urleur = file\-\_\-get\-\_\-contents(\$f3)}}\label{accion_8php_afa50febb675e5f19e9013510de218de5}
+extraemos la tabla donde se encuentra el contenido que nos interesa del html obtenido \hypertarget{accion_8php_a081efab717c24c5b35e1c7b5d7f9a0d7}{\index{accion.\-php@{accion.\-php}!\$urloe@{\$urloe}}
+\index{\$urloe@{\$urloe}!accion.php@{accion.\-php}}
+\subsubsection[{\$urloe}]{\setlength{\rightskip}{0pt plus 5cm}\$urloe = \char`\"{}http\-://www.\-oepm.\-es\char`\"{}}}\label{accion_8php_a081efab717c24c5b35e1c7b5d7f9a0d7}
+\hypertarget{accion_8php_a8d0580b4daa45d2b3b97109ff02e6b65}{\index{accion.\-php@{accion.\-php}!\$urlpe@{\$urlpe}}
+\index{\$urlpe@{\$urlpe}!accion.php@{accion.\-php}}
+\subsubsection[{\$urlpe}]{\setlength{\rightskip}{0pt plus 5cm}\$urlpe = 'http\-://worldwide.\-espacenet.\-com/'}}\label{accion_8php_a8d0580b4daa45d2b3b97109ff02e6b65}
+arreglamos las url relativas \hypertarget{accion_8php_aa270f2ef637ad3d6465f2b764c046def}{\index{accion.\-php@{accion.\-php}!\$xpath@{\$xpath}}
+\index{\$xpath@{\$xpath}!accion.php@{accion.\-php}}
+\subsubsection[{\$xpath}]{\setlength{\rightskip}{0pt plus 5cm}\$xpath = new D\-O\-M\-X\-Path( \$html )}}\label{accion_8php_aa270f2ef637ad3d6465f2b764c046def}
+\hypertarget{accion_8php_ae49e2d63f3c0e66b857f6c514a361000}{\index{accion.\-php@{accion.\-php}!foreach@{foreach}}
+\index{foreach@{foreach}!accion.php@{accion.\-php}}
+\subsubsection[{foreach}]{\setlength{\rightskip}{0pt plus 5cm}foreach(\$links as \$link)}}\label{accion_8php_ae49e2d63f3c0e66b857f6c514a361000}
+recorremos todos los enlaces extraidos escribimos los resultados 
