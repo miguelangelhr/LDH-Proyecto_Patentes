@@ -119,6 +119,7 @@ echo "				<h2>Resultados en Base de Datos de España:</h2>";
 $salida = "";
 $contenido = "";
 
+
 $urloe = "http://www.oepm.es";
 
 /**
